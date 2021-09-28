@@ -5,7 +5,7 @@ const path = require("path");
 const hbs = require("hbs");
 const bodyParser = require("body-parser");
 const mongoose = require("mongoose");
-require('dotenv').config();
+require('dotenv').config({path: "../.env"});
 const image = require('../models/image');
 
 const public = path.join(__dirname, "../public");
@@ -17,7 +17,7 @@ app.set("view engine", "hbs");
 
 app.use(bodyParser.urlencoded({extended: false}));
 
-mongoose.connect(`mongodb+srv://himanshu446267:44626748@cluster0.76uy4.mongodb.net/Gallery?retryWrites=true&w=majority`, {useNewUrlParser: true, useUnifiedTopology: true})
+mongoose.connect(`mongodb+srv://himanshu446267:${process.env.PASSWORD}@cluster0.76uy4.mongodb.net/Gallery?retryWrites=true&w=majority`, {useNewUrlParser: true, useUnifiedTopology: true})
 .then(() => {
     console.log("Connected to database");
 }).catch((error) => {
