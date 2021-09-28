@@ -16,11 +16,6 @@
       #header {
         background: url(https://images.unsplash.com/photo-1415795854641-f4a487a0fdc8?ixlib=rb-1.2.1&auto=format&fit=crop&w=750&q=80) center center / cover no-repeat ;
       }
-      .myCard{
-        height: 50%;
-        width: 50%;
-        margin: auto;
-      }
     </style>
 </head>
 <body>
@@ -32,17 +27,31 @@
   
 <section id="gallery">
   <div class="container my-5">
-    <div class="card myCard">
-        <img src="{{image.imageUrl}}" alt="" class="card-img-top">
+    <div class="row" >
+      <div class="col-lg-6 mb-4 mx-auto" >
+          <div class="card" >
+            <img src="{{image.imageUrl}}" alt="" class="card-img-top" >
             <div class="card-body">
                 <h5 class="card-title">{{image.imageName}}</h5>
                 <p class="card-text">{{image.imageDetail}}</p>
                 <a href="/{{image._id}}/edit" class="btn btn-outline-success btn-sm">Edit</a>
-                <a href="/delete/{{image._id}}" class="btn btn-outline-success btn-sm">Delete</a>
+                <a onclick="deleteImage()" class="btn btn-outline-success btn-sm">Delete</a>
             </div>
-     </div>
+          </div>
+      </div>
     </div>
+  </div>
 </section>
 
+<script>
+   function deleteImage()
+   {
+      fetch("/delete/{{image._id}}", {
+        method: "DELETE"
+      });
+
+      window.location.href = "/";
+   }
+</script>
 </body>
 </html>

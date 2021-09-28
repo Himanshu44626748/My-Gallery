@@ -26,22 +26,56 @@
     </section>
 
     <div class="container">
-        <form action="/{{image._id}}/edit" method="POST">
-        <div class="form-group">
-            <label for="imgName">Image Name:</label>
-            <input type="text" class="form-control" name="imageName" placeholder="Enter image name" id="imgName" value="{{image.imageName}}" required>
-        </div>
-        <div class="form-group">
-            <label for="imgUrl">Image URL:</label>
-            <input type="text" class="form-control" name="imageUrl" placeholder="Enter image url" id="imgUrl" required>
-        </div>
-        <div class="form-group">
-            <label for="imgDetail">Image Detail:</label>
-            <textarea class="form-control" name="imageDetail" placeholder="Enter image deatil" id="imgDetail" required></textarea>
-        </div>
-        
-        <button type="submit" class="btn btn-primary">Save</button>
+        <form id="myForm">
+            <div class="form-group">
+                <label for="imgName">Image Name:</label>
+                <input type="text" class="form-control" name="imageName" placeholder="Enter image name" id="imgName" value="{{image.imageName}}" required>
+            </div>
+            <div class="form-group">
+                <label for="imgUrl">Image URL:</label>
+                <input type="text" class="form-control" name="imageUrl" placeholder="Enter image url" id="imgUrl" required>
+            </div>
+            <div class="form-group">
+                <label for="imgDetail">Image Detail:</label>
+                <textarea class="form-control" name="imageDetail" placeholder="Enter image detail" id="imgDetail" required></textarea>
+            </div>
+            
+            <button type="submit" class="btn btn-primary">Save</button>
         </form>
     </div>
+
+    <script>
+        window.addEventListener( "load", function () {
+            function sendData() 
+            {
+                let url = document.getElementById('imgUrl').value;
+                let params = {
+                    imageName: document.getElementById('imgName').value,
+                    imageUrl: url,
+                    imageDetail: document.getElementById('imgDetail').value
+                }
+
+                
+                var Url = "/{{image._id}}/edit";
+                fetch(Url, {
+                    method: 'PUT',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(params)
+                })
+
+                window.location.href = "/show/{{image._id}}"
+            }
+
+            const form = document.getElementById( "myForm" );
+
+            form.addEventListener( "submit", function ( event )
+            {
+                event.preventDefault();
+                sendData();
+            } );
+        });
+    </script>
 </body>
 </html>

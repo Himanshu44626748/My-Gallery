@@ -16,6 +16,7 @@ app.set("views", views);
 app.set("view engine", "hbs");
 
 app.use(bodyParser.urlencoded({extended: false}));
+app.use(bodyParser.json());
 
 mongoose.connect(`mongodb+srv://himanshu446267:${process.env.PASSWORD}@cluster0.76uy4.mongodb.net/Gallery?retryWrites=true&w=majority`, {useNewUrlParser: true, useUnifiedTopology: true})
 .then(() => {
@@ -107,7 +108,7 @@ app.get("/:id/edit", async(req, res) => {
     }
 })
 
-app.post("/:id/edit", async(req, res) => {
+app.put("/:id/edit", async(req, res) => {
     try{
         let id = req.params.id;
         let name = req.body.imageName;
@@ -115,8 +116,6 @@ app.post("/:id/edit", async(req, res) => {
         let detail = req.body.imageDetail;
 
         let result = await image.findOneAndUpdate({_id: id}, {imageName: name, imageUrl: url, imageDetail: detail}, { new: true });
-
-        res.redirect(`/show/${id}`);
     }
     catch(e)
     {
@@ -124,12 +123,10 @@ app.post("/:id/edit", async(req, res) => {
     }
 })
 
-app.get("/delete/:id", async(req, res) =>{
+app.delete("/delete/:id", async(req, res) =>{
     try{
         let id = req.params.id;
         let images = await image.findOneAndDelete({_id: id});
-        
-        res.redirect("/");
     }
     catch(e)
     {
