@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/index.css" type="text/css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <title>Document</title>
+</head>
+<body>
+    <nav class="bg-dark navbar-dark">
+  </nav>
+   <section id="header" class="jumbotron text-center">
+     <h1 class="display-3">My Gallery</h1>
+     <a href="/new" class="btn btn-primary">Add New Image</a>
+</section>
+
+<div class="container mb-5">
+  <div>
+    <form class="form-inline " action="/find" method="POST">
+      <div class="form-group ml-auto">
+        <input type="text" class="form-control" name="imageName" placeholder="Search image by name">
+      </div>
+      <button type="submit" class="btn btn-success mr-auto">Search</button>
+    </form>
+  </div>
+</div>
+  
+<section id="gallery">
+  <div class="container">
+    <div class="row">
+      {{#each images}}
+        <div class="col-lg-4 mb-4" >
+        <div class="card" style="max-width: 100%; max-height: 50%;">
+          <a href="/show/{{this._id}}">
+              <img src="{{this.imageUrl}}" alt="" class="card-img-top img-fluid">
+          </a>
+        </div>
+        </div>
+      {{/each}}
+  </div>
+</div>
+</section>
+
+</body>
+</html>

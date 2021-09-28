@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/index.css" type="text/css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <title>Document</title>
+
+    <style>
+      #header {
+        background: url(https://images.unsplash.com/photo-1415795854641-f4a487a0fdc8?ixlib=rb-1.2.1&auto=format&fit=crop&w=750&q=80) center center / cover no-repeat ;
+      }
+      .myCard{
+        height: 50%;
+        width: 50%;
+        margin: auto;
+      }
+    </style>
+</head>
+<body>
+    <nav class="bg-dark navbar-dark">
+  </nav>
+   <section id="header" class="jumbotron text-center">
+     <h1 class="display-3">My Gallery</h1>
+</section>
+  
+<section id="gallery">
+  <div class="container my-5">
+    <div class="card myCard">
+        <img src="{{image.imageUrl}}" alt="" class="card-img-top">
+            <div class="card-body">
+                <h5 class="card-title">{{image.imageName}}</h5>
+                <p class="card-text">{{image.imageDetail}}</p>
+                <a href="/{{image._id}}/edit" class="btn btn-outline-success btn-sm">Edit</a>
+                <a href="/delete/{{image._id}}" class="btn btn-outline-success btn-sm">Delete</a>
+            </div>
+     </div>
+    </div>
+</section>
+
+</body>
+</html>
