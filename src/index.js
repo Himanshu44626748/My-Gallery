@@ -11,13 +11,18 @@ const image = require('../models/image');
 const public = path.join(__dirname, "../public");
 app.use(express.static(public));
 
+//Setup the hbs view engine
 const views = path.join(__dirname, "../views");
 app.set("views", views);
 app.set("view engine", "hbs");
 
+
+//body-parser middleware to parse the incoming data under the req.body
 app.use(bodyParser.urlencoded({extended: false}));
 app.use(bodyParser.json());
 
+
+//Databse connections
 mongoose.connect(`mongodb+srv://himanshu446267:${process.env.PASSWORD}@cluster0.76uy4.mongodb.net/Gallery?retryWrites=true&w=majority`, {useNewUrlParser: true, useUnifiedTopology: true})
 .then(() => {
     console.log("Connected to database");
@@ -25,6 +30,8 @@ mongoose.connect(`mongodb+srv://himanshu446267:${process.env.PASSWORD}@cluster0.
     console.log(error);
 });
 
+
+//Base url
 app.get("/", async(req, res) => {
     try{
 
@@ -38,12 +45,16 @@ app.get("/", async(req, res) => {
     {
         res.send(e);
     }
-})
+});
 
+
+//Rendered the to add new image
 app.get("/new", (req, res) => {
     res.render("addNewImage");
-})
+});
 
+
+//Add the new image to the database when above form will be submitted
 app.post("/new", async(req, res) => {
     try{
         let name = req.body.imageName;
@@ -78,6 +89,8 @@ app.post("/new", async(req, res) => {
     }
 })
 
+
+//Rendered the details of the image which is clicked
 app.get("/show/:id", async(req, res) =>{
     try{
         let id = req.params.id;
@@ -93,6 +106,8 @@ app.get("/show/:id", async(req, res) =>{
     }
 })
 
+
+//Rendered the form to edit the image
 app.get("/:id/edit", async(req, res) => {
     try{
         let id = req.params.id;
@@ -108,6 +123,8 @@ app.get("/:id/edit", async(req, res) => {
     }
 })
 
+
+//Saved the changed details of the image when the above form will submited
 app.put("/:id/edit", async(req, res) => {
     try{
         let id = req.params.id;
@@ -123,6 +140,8 @@ app.put("/:id/edit", async(req, res) => {
     }
 })
 
+
+//Delete the image on clicking the delete button
 app.delete("/delete/:id", async(req, res) =>{
     try{
         let id = req.params.id;
@@ -134,6 +153,8 @@ app.delete("/delete/:id", async(req, res) =>{
     }
 })
 
+
+// Rendered the image which is searched
 app.post("/find", async(req, res) => {
     try{
         let name = req.body.imageName;
@@ -149,6 +170,7 @@ app.post("/find", async(req, res) => {
         res.send("Error while finding image")
     }
 })
+
 
 app.listen(port, () =>{
     console.log("Server is running on port number 8000");

@@ -44,6 +44,8 @@
 </section>
 
 <script>
+
+  // Make the DELETE request to the server and after deleting redirect to home page
    function deleteImage()
    {
       fetch("/delete/{{image._id}}", {

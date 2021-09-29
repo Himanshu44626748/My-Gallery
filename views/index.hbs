@@ -53,7 +53,8 @@
 
 <script>
 
-    let images = [];
+
+    let images = [];    //Store the all the image present in database
     {{#each images}}
         images.push({
           id: "{{this._id}}",
@@ -72,6 +73,7 @@
     pagginationButton();
     myFunction(1);
 
+    //Show the paggination button according to available images
     function pagginationButton()
     {
         document.getElementById('paggButton').innerHTML = '';
@@ -81,6 +83,7 @@
         }
     }
 
+    //Return the trimmed data which according to the page number
     function pagination(data, page, items)
     {
         let myPromise = new Promise((myResolve, myReject) => {
@@ -95,6 +98,7 @@
         return myPromise;
     }
 
+    //Show the 9 image per page according to the page number
     async function myFunction(currPage)
     {
         let parent = document.getElementById('paggButton');
