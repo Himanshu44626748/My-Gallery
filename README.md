@@ -20,7 +20,7 @@ HTML, CSS, Bootstrap, Javascript, Node.js, Express.js, MongoDB
 
 ## Links
 
-Herouku - https://mygallery1-app.herokuapp.com/
+Heroku - https://mygallery1-app.herokuapp.com/
 
 Github - https://github.com/Himanshu44626748/My-Gallery
 
