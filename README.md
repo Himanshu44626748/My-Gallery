@@ -6,7 +6,7 @@
 * public
     * css
         * index.css
- *src
+ * src
     * index.js
 * views
     * index.hbs
@@ -27,6 +27,36 @@ Github - https://github.com/Himanshu44626748/My-Gallery
 ## Usage
 
 Clone the repo and run `npm i` to install all the required modules and then run `nodemon src/index.js` to start the server. Server will run on port 8000 so open browser and run http://localhost:8000/
+
+## Folder Description
+
+* models/image.js
+
+   This contains the schema of database.
+   
+* public/css/index.css
+
+   This contains the css of index.hbs file.
+
+* src/index.js
+
+   This file conatins the server side code.
+   
+* views/index.hbs
+
+   This conatins the html code for home page.
+   
+* views/detailOfImage.hbs
+
+   This file contains html code to show the detail of image which is clicked.
+   
+* views/editDetails.hbs
+
+   This file contains the html code of form to change the detail of image.
+   
+* views/addNewImage.hbs
+
+   This file contains the html code of form through which you can add new image to the gallery.
 
 ## Routes
 
